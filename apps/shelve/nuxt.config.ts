@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   ssr: false,
 
   nitro: {
+    preset: 'vercel',
     experimental: {
       openAPI: true
     },
