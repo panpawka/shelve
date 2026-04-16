@@ -25,7 +25,7 @@ export default eventHandler(async (event) => {
     const value = variable.values.find((value) => value.environmentId === envId)
     return {
       key: variable.key,
-      value: value!.value,
+      value: value?.value ?? '',
       description: variable.description || undefined,
       group: variable.group
         ? { name: variable.group.name, description: variable.group.description }
