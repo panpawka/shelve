@@ -1,0 +1,4 @@
+{
+  "buildCommand": "pnpm build:app",
+  "outputDirectory": "apps/shelve/.output/public"
+}
