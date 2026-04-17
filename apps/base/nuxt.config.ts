@@ -27,7 +27,6 @@ export default defineNuxtConfig({
 
   modules: [
     "@nuxt/image",
-    "nuxt-build-cache",
     "@vercel/analytics",
     "@vercel/speed-insights",
     "@vueuse/nuxt",
