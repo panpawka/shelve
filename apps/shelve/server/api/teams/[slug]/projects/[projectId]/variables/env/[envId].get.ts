@@ -23,12 +23,9 @@ export default eventHandler(async (event) => {
 
   const variables: EnvVarExport[] = decryptedVariables.map((variable) => {
     const entry = variable.values.find((v) => v.environmentId === envId)
-    if (!entry) {
-      throw createError({ statusCode: 500, statusMessage: `Variable "${variable.key}" has no entry for envId=${envId} in projectId=${projectId}` })
-    }
     return {
       key: variable.key,
-      value: entry.value,
+      value: entry?.value ?? '',
       description: variable.description || undefined,
       group: variable.group
         ? { name: variable.group.name, description: variable.group.description }
