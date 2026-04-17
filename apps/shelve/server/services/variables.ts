@@ -167,8 +167,8 @@ export class VariablesService {
     })
   }
 
-  getVariables = withCache<Variable[]>('Variables', async (projectId: number, environmentId?: number) => {
-    const variables = await db.query.variables.findMany({
+  getVariables = withCache<Variable[]>('Variables', async (projectId: number) => {
+    return db.query.variables.findMany({
       where: eq(schema.variables.projectId, projectId),
       with: {
         group: true,
@@ -179,10 +179,6 @@ export class VariablesService {
         }
       }
     })
-
-    return environmentId
-      ? variables.filter(v => v.values.some(val => val.environmentId === environmentId))
-      : variables
   })
 
   async bulkAssignGroup(variableIds: number[], groupId: number | null): Promise<void> {

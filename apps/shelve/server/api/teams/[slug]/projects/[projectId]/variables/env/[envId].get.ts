@@ -15,7 +15,7 @@ export default eventHandler(async (event) => {
   const variablesService = new VariablesService(event)
 
   variablesService.incrementStatAsync(team.id, 'pull')
-  const result = await variablesService.getVariables(projectId, envId)
+  const result = await variablesService.getVariables(projectId)
 
   if (!result) throw createError({ statusCode: 404, statusMessage: `Variables not found for project ${projectId} and environment ${envId}` })
 
