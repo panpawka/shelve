@@ -23,6 +23,9 @@ export default eventHandler(async (event) => {
 
   const variables: EnvVarExport[] = decryptedVariables.map((variable) => {
     const value = variable.values.find((value) => value.environmentId === envId)
+    if (!value) {
+      console.warn(`[variables/env] Variable "${variable.key}" has no value for envId=${envId} (projectId=${projectId})`)
+    }
     return {
       key: variable.key,
       value: value?.value ?? '',
