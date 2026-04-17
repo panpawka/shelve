@@ -1,4 +1,3 @@
 {
-  "buildCommand": "nuxt prepare --cwd ../base && nuxt build",
-  "outputDirectory": ".output/public"
+  "buildCommand": "nuxt prepare --cwd ../base && nuxt build"
 }
