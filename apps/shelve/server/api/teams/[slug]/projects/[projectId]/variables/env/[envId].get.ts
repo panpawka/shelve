@@ -39,10 +39,12 @@ export default eventHandler(async (event) => {
   const decryptedVariables = await variablesService.decryptVariables(result)
 
   const variables: EnvVarExport[] = decryptedVariables.map((variable) => {
+    // A project variable can have no value in this environment (e.g. server-only
+    // keys seen from a client env); it exports as '' and is filtered out below.
     const value = variable.values.find((value) => value.environmentId === envId)
     return {
       key: variable.key,
-      value: value!.value,
+      value: value?.value ?? '',
       description: variable.description || undefined,
       group: variable.group
         ? { name: variable.group.name, description: variable.group.description }
